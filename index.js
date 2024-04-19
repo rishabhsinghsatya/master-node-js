@@ -1,42 +1,30 @@
-import http from "http";
-// import gfName from "./features.js";
-// import randomLovePercent from "./features.js";
-import fs from "fs"; //File system module
+import express from "express";
+// import fs from "fs";
 import path from "path";
 
-// console.log(gfName);
-// console.log(randomLovePercent());
+const app = express();
 
-// const home = fs.readFile("./index.html", () => {
-//   console.log("File read");
-// });
-// console.log(home); //undefined
-
-//now use syncronously
-const home = fs.readFileSync("./index.html");
-// console.log(home); //give buffer data
-
-console.log(path.extname("/home/file/random/home.js")); //give file extension
-console.log(path.dirname("/home/file/random/home.js")); //give directory extension
-
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    // res.end("<h1>This is Home page</h1>");
-
-    // fs.readFile("./index.html", (err, home) => {
-    //   res.end(home);
-    // });
-
-    res.end(home);
-  } else if (req.url === "/about") {
-    res.end("<h1>This is About page</h1>");
-  } else if (req.url === "/contact") {
-    res.end("<h1>Contact page</h1>");
-  } else {
-    res.end("404: Page Not Found");
-  }
+app.get("/", (req, res) => {
+  //   res.send("Hi"); //return Hi in browser body
+  //send status code
+  //   res.sendStatus(404);
+  //   res.sendStatus(400);
+  //   res.sendStatus(500);
+  //   res.status(400).send("your custom message");
+  //send json
+  //   res.json({
+  //     success: true,
+  //     products: [],
+  //   });
+  //send file with fs module
+  //   const file = fs.readFileSync("./index.html");
+  //   res.send(file); //not working, so i'll use path module
+  //send file with path module
+  //   const pathlocation = path.resolve();
+  //   //   console.log(path.join(pathlocation, "./index.html"));
+  //   res.sendFile(path.join(pathlocation, "./index.html"));
 });
 
-server.listen(5000, () => {
-  console.log("Server is working");
+app.listen(5000, () => {
+  console.log("Server run successfully");
 });
